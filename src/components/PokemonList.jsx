@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import PokemonImage from "./PokemonImage";
+import PokemonCard from "./PokemonCard";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -23,7 +23,7 @@ const PokemonList = () => {
   return (
     <div className="pokemon-grid">
       {pokemonList.map((pokemon, index) => (
-        <PokemonImage
+        <PokemonCard
           key={pokemon.name}
           pokemon={pokemon}
           index={index + 1}
