@@ -1,7 +1,11 @@
 import React from "react";
 import PokemonButton from "./PokemonButton";
 
-const PokemonImage = ({ pokemon, index, onAddToTeam }) => {
+const PokemonCard = ({ pokemon, index}) => {
+  const handleAddToTeam = () => {
+    console.log(pokemon.name)
+  };
+
   return (
     <div className="pokemon-card">
       <img
@@ -9,9 +13,10 @@ const PokemonImage = ({ pokemon, index, onAddToTeam }) => {
         alt={pokemon.name}
       />
       <h2>{`${index}. ${pokemon.name}`}</h2>
-      <PokemonButton onClick={() => onAddToTeam(pokemon.name)} />
+      <PokemonButton onClick={handleAddToTeam}/>
     </div>
   );
 };
 
-export default PokemonImage;
+export default PokemonCard;
+

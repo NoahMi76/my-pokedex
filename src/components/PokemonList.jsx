@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import PokemonImage from "./components/PokemonImage";
-import './App.css';
+import PokemonCard from "./PokemonCard";
 
-const App = () => {
+const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
@@ -21,30 +20,17 @@ const App = () => {
     fetchData();
   }, []);
 
-  const handleAddToTeam = (pokemonName) => {
-    console.log({pokemonName});
-  };
-
   return (
-    <div>
-      <h1>Pokedex</h1>
-      <div className="pokemon-grid">
-        {pokemonList.map((pokemon, index) => (
-          <PokemonImage
-            key={pokemon.name}
-            pokemon={pokemon}
-            index={index + 1}
-            onAddToTeam={handleAddToTeam}
-          />
-        ))}
-      </div>
+    <div className="pokemon-grid">
+      {pokemonList.map((pokemon, index) => (
+        <PokemonCard
+          key={pokemon.name}
+          pokemon={pokemon}
+          index={index + 1}
+        />
+      ))}
     </div>
   );
 };
 
-export default App;
-
-
-
-
-
+export default PokemonList;
