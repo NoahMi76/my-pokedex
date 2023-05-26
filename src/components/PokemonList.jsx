@@ -19,8 +19,8 @@ const PokemonList = () => {
 
     fetchData();
   }, []);
-
   return (
+    
     <div className="pokemon-grid">
       {pokemonList.map((pokemon, index) => (
         <PokemonCard
