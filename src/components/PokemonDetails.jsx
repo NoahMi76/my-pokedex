@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import "./PokemonDetails.css";
 import PokemonButton from "./PokemonButton";
 
+
 const PokemonDetails = () => {
   const [pokemon, setPokemon] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
@@ -15,6 +17,7 @@ const PokemonDetails = () => {
           `https://pokeapi.co/api/v2/pokemon/${id}`
         );
         setPokemon(response.data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -23,8 +26,12 @@ const PokemonDetails = () => {
     fetchPokemonDetails();
   }, [id]);
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   if (!pokemon) {
-    return <p>Loading</p>;
+    return <p>Erreur dans l'API</p>;
   }
 
   const heightInMeters = pokemon.height / 10;
@@ -47,7 +54,7 @@ const PokemonDetails = () => {
         <p>Base Experience: {pokemon?.base_experience}</p>
           <p>Abilities: {pokemon?.abilities?.map((ability) => ability.ability.name).join(", ")}</p>
           <p>Types: {pokemon?.types?.map((type) => type.type.name).join(", ")}</p>
-        <PokemonButton ></PokemonButton>
+        <PokemonButton/>
         
     </div>
       <div className="right-section2">

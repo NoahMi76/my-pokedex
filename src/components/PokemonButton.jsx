@@ -1,12 +1,14 @@
 import React from "react";
 import "./PokemonButton.css";
 
+const Button = ({ onClick, className, children }) => (
+  <button className={`button ${className}`} onClick={onClick}>
+    {children}
+  </button>
+);
 
-
-
-const PokemonButton = ({ onClick }) => {
-  
-  return <button className="pokemon-button" onClick={onClick}>Ajouter au Pokédex</button>;
+Button.defaultProps = {
+  className: "pokemon-button"
 };
 
-export default PokemonButton;
+export default Button;
