@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import "./PokemonDetails.css";
-import PokemonButton from "./PokemonButton";
-
+import { Box, Image, Badge, Text, Stack, VStack, Heading, Button, CircularProgress, Center } from "@chakra-ui/react";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 const PokemonDetails = () => {
   const [pokemon, setPokemon] = useState(null);
@@ -13,9 +13,7 @@ const PokemonDetails = () => {
   useEffect(() => {
     const fetchPokemonDetails = async () => {
       try {
-        const response = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${id}`
-        );
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
         setPokemon(response.data);
         
       } catch (error) {
@@ -29,47 +27,111 @@ const PokemonDetails = () => {
     fetchPokemonDetails();
   }, [id]);
 
+  const handleAddToPokedex = () => {
+    const pokedex = localStorage.getItem("pokedex");
+    const updatedPokedex = pokedex ? JSON.parse(pokedex) : [];
+    localStorage.setItem("pokedex", JSON.stringify(updatedPokedex));
+    alert("Le Pokémon a été ajouté au Pokédex !");
+  };
+
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <Center h="100vh">
+        <CircularProgress isIndeterminate color="teal.300" />
+      </Center>
+    );
   }
 
   if (!pokemon) {
-    return <p>Erreur dans l'API</p>;
+    return (
+      <Center h="100vh">
+        <Text>Erreur dans l'API</Text>
+      </Center>
+    );
   }
 
   const heightInMeters = pokemon.height / 10;
   const weightInKilograms = pokemon.weight / 10;
 
   return (
-    <div className="pokemon-details-container">
-      <div className="left-section">
-        <h2 className="pokemon-name">{pokemon?.name}</h2>
-        <img
+    <Center>
+      <Box
+        maxW="md"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        boxShadow="lg"
+        p={4}
+      >
+        <Stack direction="row" alignItems="center" mb={4}>
+          <Button
+            size="xs"
+            as={Link}
+            to="/"
+            leftIcon={<ChevronLeftIcon />}
+            colorScheme="teal"
+            variant="outline"
+          >
+            Retour
+          </Button>
+          <Heading as="h2" size="lg" flexGrow={1} pl={20}>
+            {pokemon?.name}
+          </Heading>
+        </Stack>
+        <Image
           src={pokemon?.sprites?.front_default}
           alt={pokemon?.name}
-          className="pokemon-image"
+          objectFit="cover"
+          borderRadius="lg"
+          mb={4}
+          h={300}
+          w={500}
         />
-      </div>
-      <div className="right-section">
-        <h2>Détails</h2>
-        <p>Height: {heightInMeters} m</p>
-        <p>Weight: {weightInKilograms}  kg</p>
-        <p>Base Experience: {pokemon?.base_experience}</p>
-          <p>Abilities: {pokemon?.abilities?.map((ability) => ability.ability.name).join(", ")}</p>
-          <p>Types: {pokemon?.types?.map((type) => type.type.name).join(", ")}</p>
-        <PokemonButton/>
-        
-    </div>
-      <div className="right-section2">
-      <h2>Stats:</h2>
-      {pokemon?.stats.map(stat => (
-        <p key={stat.stat.name}>
-          {stat.stat.name}: {stat.base_stat}
-        </p>
-      ))}
-      </div>
-    </div>
+        <VStack spacing={2} alignItems="start">
+          <Text>
+            <strong>Height:</strong> {heightInMeters} m
+          </Text>
+          <Text>
+            <strong>Weight:</strong> {weightInKilograms} kg
+          </Text>
+          <Text>
+            <strong>Base Experience:</strong> {pokemon?.base_experience}
+          </Text>
+          <Text>
+            <strong>Abilities:</strong>{" "}
+            {pokemon?.abilities?.map((ability) => ability.ability.name).join(", ")}
+          </Text>
+          <Text>
+            <strong>Types:</strong>{" "}
+            {pokemon?.types?.map((type) => (
+              <Badge
+                key={type.type.name}
+                colorScheme="teal"
+                variant="outline"
+                mr={2}
+              >
+                {type.type.name}
+              </Badge>
+            ))}
+          </Text>
+          <Text mt={4} fontWeight="bold">
+            Stats:
+          </Text>
+          {pokemon?.stats.map((stat) => (
+            <Box key={stat.stat.name}>
+              <Text>
+                <strong>{stat.stat.name}:</strong> {stat.base_stat}
+              </Text>
+            </Box>
+          ))}
+        </VStack>
+        <Button mt={4} colorScheme="teal" size="lg" isFullWidth onClick={handleAddToPokedex}>
+          Ajouter au Pokédex
+        </Button>
+      </Box>
+    </Center>
   );
 };
 
 export default PokemonDetails;
+

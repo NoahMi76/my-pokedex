@@ -1,0 +1,24 @@
+import React from "react";
+import { Button } from "@chakra-ui/react";
+
+const PokemonAddToPokedexButton = ({ pokemon }) => {
+  const handleAddToPokedex = () => {
+    // Logique de gestion du clic pour ajouter le Pokémon au Pokédex
+    localStorage.setItem("pokedex", JSON.stringify(pokemon));
+    alert(`${pokemon.name} a été ajouté au Pokédex !`);
+  };
+
+  return (
+    <Button
+      mt={4}
+      colorScheme="teal"
+      size="lg"
+      isFullWidth
+      onClick={handleAddToPokedex}
+    >
+      Ajouter au Pokédex
+    </Button>
+  );
+};
+
+export default PokemonAddToPokedexButton;
