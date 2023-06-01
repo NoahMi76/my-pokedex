@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url("https://img.freepik.com/vecteurs-libre/fond-hexagonal-fonce-degrade-couleur_79603-1410.jpg?w=1380&t=st=1685431870~exp=1685432470~hmac=73daf4d8dc9646451d189f875d35bd75b60b1b4120069daffdf4c2c08c31d5a2") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.pokemon-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden; 
+    
+  }
+  
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pokemon-name {
+    font-size: 2.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    animation: tiltAnimation 2s infinite linear;
+    color:white;
+  }
+  
+  @keyframes tiltAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .pokemon-image {
+    width: 18.75rem;
+    height: 18.75rem;
+    background-color: rgb(231, 231, 231);
+    border-radius: 0.625rem;
+    border:3px solid black;
+    margin-bottom: 12.5rem;
+  }
+  
+  .right-section {
+    
+    color:white;
+    background-color: rgb(46, 136, 136);
+    border-radius: 0.625rem;
+    margin-bottom: 6.875rem;
+    padding: 7px;
+    border: 2px solid black;
+  }
+  
+  p {
+    font-size: 18px;
+    margin-bottom: 0.625rem;
+    color:white;
+  }
+  
+  .right-section2 {
+    
+    color:white;
+    background-color:orange;
+    border-radius: 0.625rem;
+    margin-bottom: 6.875rem;
+    padding: 0.438rem;
+    border: 2px solid black;
+  }
+
+  .button-retour{
+    
+      position: absolute;
+      top: 0.625rem;
+      left: 1.25rem;
+      background-color:red;
+      color:white;
+      padding: 0.625rem 1.25rem;
+      border: none;
+      border-radius: 0.313rem;
+      font-size: 1rem;
+      cursor: pointer;
+    
+    
+   
+  }
+
