@@ -17,9 +17,12 @@ const PokemonDetails = () => {
           `https://pokeapi.co/api/v2/pokemon/${id}`
         );
         setPokemon(response.data);
-        setIsLoading(false);
+        
       } catch (error) {
         console.log(error);
+      }
+      finally{
+        setIsLoading(false);
       }
     };
 
