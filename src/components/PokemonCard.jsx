@@ -9,7 +9,7 @@ const PokemonCard = ({ pokemon, index }) => {
     navigate(`/pokemon/${index}`);
   };
   return (
-    <Card maxW="sm" onClick={handleCardClick} cursor="pointer" boxShadow="md" rounded="md" ml={20} bgImage={`url(https://www.pokebip.com/membres/galeries/1217/1217241528089622100.jpg)`} Size="cover" >
+    <Card maxW="sm" maxH="sm" onClick={handleCardClick} cursor="pointer" boxShadow="md" rounded="md" ml={20} mb={5} border="2px" borderColor="gray.600  " >
       <CardBody>
         <Heading size="md" textAlign="center">{`${index}. ${pokemon.name}`}</Heading>
       </CardBody>
