@@ -23,9 +23,8 @@ const Error404 = () => {
         <AlertTitle mt={4} mb={2}>
           ERROR 404
         </AlertTitle>
-        <AlertDescription>Page Introuvable 
-          <br/>
-        <Link to="/">Retour à l'accueil</Link></AlertDescription>
+        <AlertDescription mb={2 }>Page Introuvable</AlertDescription>
+        <AlertDescription><Link to="/"> Retour à l'accueil</Link></AlertDescription>
       </Alert>
   );
 };

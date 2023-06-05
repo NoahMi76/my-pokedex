@@ -34,18 +34,22 @@ const PokemonList = () => {
 
   return (
     <Box
-    bgGradient="linear(to-l, #5ABBA1, #CDC718 )"
-      minHeight="100vh"
+      bg="url('https://img.freepik.com/photos-gratuite/volume-resume-graphique-solitude-bureau_1258-258.jpg?w=1380&t=st=1685716626~exp=1685717226~hmac=dff7acff911948a9497853018704e3c5b6f81f72f10a8d8320872bc13ef31c09')"
+      bgAttachment="fixed"
+      bgRepeat="no-repeat"
+      bgSize="cover"
+      
+      minH="100vh"
       p={4}
     >
       <InputGroup mb={4} bg="white" borderRadius="md">
         <InputLeftElement pointerEvents="none">
           <Tooltip hasArrow label="Rechercher">
-            <SearchIcon color="gray.300" />
+            <SearchIcon color="primary.400" />
           </Tooltip>
         </InputLeftElement>
         <Input
-          focusBorderColor="gray.500"
+          focusBorderColor="primary.400"
           placeholder="Rechercher un Pokémon"
           value={searchQuery}
           onChange={handleSearchInputChange}

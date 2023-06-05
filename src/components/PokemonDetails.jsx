@@ -45,8 +45,15 @@ const PokemonDetails = () => {
   if (!pokemon) {
     return (
       <Center h="100vh">
-        <Text>Erreur dans l'API</Text>
-      </Center>
+      <Box p={6} shadow="md" borderWidth="1px" borderRadius="md" bg="white">
+        <Heading as="h2" size="lg" mb={4} textAlign="center" color="red.500">
+          Erreur dans l'API
+        </Heading>
+        <Text fontSize="xl" textAlign="center">
+          Nous rencontrons actuellement un problème pour récupérer les données du Pokémon. Veuillez réessayer plus tard.
+        </Text>
+      </Box>
+    </Center>
     );
   }
 
@@ -69,7 +76,7 @@ const PokemonDetails = () => {
             as={Link}
             to="/"
             leftIcon={<ChevronLeftIcon />}
-            colorScheme="teal"
+            colorScheme="primary"
             variant="outline"
           >
             Retour
@@ -81,32 +88,33 @@ const PokemonDetails = () => {
         <Image
           src={pokemon?.sprites?.front_default}
           alt={pokemon?.name}
-          objectFit="cover"
+          objectFit="contain"
           borderRadius="lg"
+
           mb={4}
           h={300}
           w={500}
         />
         <VStack spacing={2} alignItems="start">
           <Text>
-            <strong>Height:</strong> {heightInMeters} m
+          <Text fontWeight="bold"> Height: </Text>{heightInMeters} m
           </Text>
           <Text>
-            <strong>Weight:</strong> {weightInKilograms} kg
+          <Text fontWeight="bold"> Weight: </Text> {weightInKilograms} kg
           </Text>
           <Text>
-            <strong>Base Experience:</strong> {pokemon?.base_experience}
+          <Text fontWeight="bold"> Base Experience: </Text>{pokemon?.base_experience}
           </Text>
           <Text>
-            <strong>Abilities:</strong>{" "}
+          <Text fontWeight="bold"> Abilities: </Text>{" "}
             {pokemon?.abilities?.map((ability) => ability.ability.name).join(", ")}
           </Text>
           <Text>
-            <strong>Types:</strong>{" "}
+          <Text fontWeight="bold"> Types: </Text>{" "}
             {pokemon?.types?.map((type) => (
               <Badge
                 key={type.type.name}
-                colorScheme="teal"
+                colorScheme="primary"
                 variant="outline"
                 mr={2}
               >
@@ -120,12 +128,12 @@ const PokemonDetails = () => {
           {pokemon?.stats.map((stat) => (
             <Box key={stat.stat.name}>
               <Text>
-                <strong>{stat.stat.name}:</strong> {stat.base_stat}
+                {stat.stat.name} {stat.base_stat}
               </Text>
             </Box>
           ))}
         </VStack>
-        <Button mt={4} colorScheme="teal" size="lg" isFullWidth onClick={handleAddToPokedex}>
+        <Button mt={4}  colorScheme="primary" size="lg" isFullWidth onClick={handleAddToPokedex}>
           Ajouter au Pokédex
         </Button>
       </Box>
