@@ -16,6 +16,7 @@ const PokemonCard = ({ pokemon, index }) => {
       <Image
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`}
         alt={pokemon.name}
+        objectFit="contain"
         borderRadius="md"
         maxH="200"
         mb="60"
