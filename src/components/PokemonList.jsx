@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PokemonCard from "./PokemonCard";
-import { Box, Input, InputGroup, InputLeftElement, SimpleGrid } from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputLeftElement, SimpleGrid, IconButton, Icon } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Tooltip } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { FiShoppingCart } from "react-icons/fi"; // Importation de l'icône de Pokéball
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -38,7 +40,6 @@ const PokemonList = () => {
       bgAttachment="fixed"
       bgRepeat="no-repeat"
       bgSize="cover"
-      
       minH="100vh"
       p={4}
     >
@@ -55,6 +56,14 @@ const PokemonList = () => {
           onChange={handleSearchInputChange}
           bg="white"
         />
+        <Link to="/pokedex">
+          <IconButton
+            ml={2}
+            colorScheme="primary"
+            aria-label="Accéder au Pokédex"
+            icon={<Icon as={FiShoppingCart} boxSize={25} />} //Shop Icon
+          />
+        </Link>
       </InputGroup>
 
       <SimpleGrid columns={3} spacing={4}>
